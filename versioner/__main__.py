@@ -1,0 +1,28 @@
+import versioner as vn
+
+ver = vn.Versioner()
+
+v1 = ver.parse("1.0.13-release.5")
+v2 = ver.parse("1.0.13-release.6")
+
+print()
+print(f"ver.patterns                         : {ver.patterns}")
+print(f"ver.variations                       : {ver.variations}")
+print(f"ver.version_data                     : {ver.version_data}")
+print()
+print(f"v1                                   : {v1.__repr__()}")
+print(f"v2                                   : {v2.__repr__()}")
+print()
+print(f"v1.version_data                      : {v1.version_data}")
+print(f"v2.version_data                      : {v2.version_data}")
+print()
+print(f"v1.hash_data                         : {v1.hash_data}")
+print(f"v2.hash_data                         : {v2.hash_data}")
+print()
+print(f"{v1} != {v2} : {v1!=v2} ")
+print(f"{v1} == {v2} : {v1==v2}")
+print(f"{v1} >= {v2} : {v1>=v2}")
+print(f"{v1} <= {v2} : {v1<=v2}")
+print(f"{v1} >  {v2} : {v1>v2} ")
+print(f"{v1} <  {v2} : {v1<v2} ")
+print()

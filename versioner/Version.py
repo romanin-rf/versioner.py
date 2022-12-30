@@ -16,7 +16,7 @@ class Version:
         self,
         version: str,
         version_data: Dict[str, int]
-    ) -> bool:
+    ) -> None:
         self.version = version
         self.version_data = version_data
         self.hash_data = [hash(i) for i in self.version_data.values()]
@@ -48,7 +48,7 @@ class Versioner:
     ) -> None:
         self.version_data: Dict[str, Any] = kwargs.get("version_data", STANDART_VERSION_DATA)
         self.patterns: List[Pattern] = get_patterns(kwargs.get("patterns", STANDART_PATTERNS))
-        self.variations: Dict[str, List[str]] = kwargs.get("patterns", STANDART_VARIATIONS)
+        self.variations: Dict[str, List[str]] = kwargs.get("variations", STANDART_VARIATIONS)
     
     def parse(self, string: str) -> Version:
         vd, pvd = self.version_data.copy(), parse_version_data(string, self.patterns)

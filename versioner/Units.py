@@ -6,7 +6,7 @@ STANDART_PATTERNS = [
     "<major:int>.<minor:int>",
     "<major:int>"
 ]
-STANDART_VARIATIONS = {"build_name": ["", "alpha", "beta", "debag", "pre-release", "release"]}
+STANDART_VARIATIONS = {"build_name": ["", "alpha", "beta", "unrelease", "release"]}
 STANDART_VERSION_DATA = {
     "major": 0,
     "minor": 0,

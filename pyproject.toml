@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "versioner-py"
+version = "1.2.0"
+keywords = ["version", "versioner", "version-system", "versioner.py", "versioner-py"]
+description = "A simple versioning module, with the ability to customise to any version-system."
+authors = ["Romanin <semina054@gmail.com>"]
+homepage = "https://github.com/romanin-rf/versioner.py"
+repository = "https://github.com/romanin-rf/versioner.py"
+license = "MIT"
+packages = [{include = "versioner"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+vbml = "^1.1.post1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

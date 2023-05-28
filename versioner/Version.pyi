@@ -1,7 +1,6 @@
 from vbml import Pattern
 from typing import Dict, List, Union
 from .Units import STANDART_PATTERNS, STANDART_VARIATIONS, STANDART_VERSION_DATA
-from .Exceptions import ParsingError, ParsingKeysError
 
 class Version:
     def __init__(self, version: str, version_data: Dict[str, int]) -> None: ...
@@ -20,15 +19,15 @@ class Version:
     def __ge__(self, other: Version) -> bool: ...
 
 class Versioner:
+    version_data: Dict[str, Union[int, float, str]]
+    patterns: List[Pattern]
+    variations: Dict[str, List[str]]
+    
     def __init__(
         self,
-        *,
         version_data: Dict[str, Union[int, float, str]]=STANDART_VERSION_DATA,
         patterns: List[str]=STANDART_PATTERNS,
         variations: Dict[str, List[str]]=STANDART_VARIATIONS
     ) -> None: ...
-    version_data: Dict[str, Union[int, float, str]]
-    patterns: List[Pattern]
-    variations: Dict[str, List[str]]
     
     def parse(self, string: str) -> Version: ...

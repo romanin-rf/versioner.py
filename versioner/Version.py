@@ -1,14 +1,9 @@
 from vbml import Pattern
 from typing import Dict, Any, List
 # * Local Imports
-try:
-    from .Functions import get_patterns, handling_variations, is_equal_keys, parse_version_data
-    from .Exceptions import ParsingError, ParsingKeysError
-    from .Units import STANDART_PATTERNS, STANDART_VARIATIONS, STANDART_VERSION_DATA
-except:
-    from Functions import get_patterns, handling_variations, is_equal_keys, parse_version_data
-    from Exceptions import ParsingError, ParsingKeysError
-    from Units import STANDART_PATTERNS, STANDART_VARIATIONS, STANDART_VERSION_DATA
+from .Functions import get_patterns, handling_variations, is_equal_keys, parse_version_data
+from .Exceptions import ParsingError, ParsingKeysError
+from .Units import STANDART_PATTERNS, STANDART_VARIATIONS, STANDART_VERSION_DATA
 
 # ! Version Class
 class Version:
@@ -22,8 +17,10 @@ class Version:
         self.hash_data = [hash(i) for i in self.version_data.values()]
     
     def __str__(self) -> str: return self.version
-    def __repr__(self) -> str: return f"{self.__class__.__name__}('{self.__str__()}')"
+    def __repr__(self) -> str: return f"'{self.__str__()}'"
+    
     def similar_to(self, version) -> bool: return is_equal_keys(self.version_data, version.version_data)
+    
     def __eq__(self, other) -> bool:
         if self.similar_to(other):
             return min([(i[0] == i[1]) for i in list(zip(self.hash_data, other.hash_data))])
@@ -44,11 +41,13 @@ class Version:
 class Versioner:
     def __init__(
         self,
-        **kwargs
+        version_data=STANDART_VERSION_DATA,
+        patterns=STANDART_PATTERNS,
+        variations=STANDART_VARIATIONS
     ) -> None:
-        self.version_data: Dict[str, Any] = kwargs.get("version_data", STANDART_VERSION_DATA)
-        self.patterns: List[Pattern] = get_patterns(kwargs.get("patterns", STANDART_PATTERNS))
-        self.variations: Dict[str, List[str]] = kwargs.get("variations", STANDART_VARIATIONS)
+        self.version_data: Dict[str, Any] = version_data
+        self.patterns: List[Pattern] = patterns
+        self.variations: Dict[str, List[str]] = variations
     
     def parse(self, string: str) -> Version:
         vd, pvd = self.version_data.copy(), parse_version_data(string, self.patterns)
